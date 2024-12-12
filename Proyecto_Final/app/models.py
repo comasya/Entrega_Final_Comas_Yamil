@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Telefono(models.Model):
+class about(models.Model):
     marca = models.CharField(max_length=25)
     modelo = models.CharField(max_length=25)
     precio = models.FloatField()

@@ -6,11 +6,14 @@ from django.http import HttpResponse
 def inicio(request):
     return render(request,"app/inicio.html")
 
-def Telefono(request):
-    return HttpResponse("vista Telefono")
+def about(request):
+    return render(request,"app/about.html")
 
-def Cliente(request):
-    return HttpResponse("vista Clientes")
- 
-def Venta(request):
-    return HttpResponse("vista Venta")
+def blog(request):
+    return render(request,"app/blog.html")
+
+def car(request):
+    return render(request,"app/car.html")
+
+def contact(request):
+    return render(request,"app/contact.html")

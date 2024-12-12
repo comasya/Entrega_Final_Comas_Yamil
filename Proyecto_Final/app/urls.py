@@ -4,7 +4,8 @@ from app import views
 
 urlpatterns = [
     path('inicio/', views.inicio),
-    path('celulares/',views.Telefono),
-    path('clientes/',views.Cliente),
-    path('ventas/',views.Venta)
+    path('contact/', views.contact),
+    path('car/', views.car),
+    path('blog/', views.blog),
+    path('about/', views.about)    
 ]
