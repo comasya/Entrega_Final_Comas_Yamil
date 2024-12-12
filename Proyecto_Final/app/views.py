@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def inicio(request):
-    return HttpResponse("vista inicio")
+    return render(request,"app/inicio.html")
 
 def Telefono(request):
     return HttpResponse("vista Telefono")
