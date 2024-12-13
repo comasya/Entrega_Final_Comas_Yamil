@@ -1,5 +1,10 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends "app/base.html" %}
+
+{%load static%}
+
+{%block main%}
+     
+
 <html>
 
 <head>
@@ -32,44 +37,6 @@
 
 <body class="sub_page">
   <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="inicio.html">
-            <span>
-              Rent4u
-            </span>
-          </a>
-
-          <div class="navbar-collapse" id="">
-            <div class="user_option">
-              <a href="">
-                Login
-              </a>
-            </div>
-            <div class="custom_menu-btn">
-              <button onclick="openNav()">
-                <span class="s-1"> </span>
-                <span class="s-2"> </span>
-                <span class="s-3"> </span>
-              </button>
-            </div>
-            <div id="myNav" class="overlay">
-              <div class="overlay-content">
-                <a href="inicio.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="car.html">Cars</a>
-                <a href="blog.html">Blog</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="#">Login</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <!-- end header section -->
   </div>
 
   <!-- about section -->
@@ -101,14 +68,6 @@
 
   <!-- end about section -->
 
-  <!-- footer section -->
-  <footer class="container-fluid footer_section">
-    <p>
-      Copyright &copy; 2020 All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
-    </p>
-  </footer>
-  <!-- footer section -->
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
@@ -119,3 +78,5 @@
 </body>
 
 </html>
+
+{% endblock main%}

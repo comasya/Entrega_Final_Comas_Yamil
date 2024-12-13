@@ -16,18 +16,18 @@
   <title>Rent4u</title>
 
   <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" type="{% static 'app/text/css'%}" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.css'%}" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{% static 'app/css/style.css'%}" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="{% static 'app/css/responsive.css'%}" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -36,7 +36,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="inicio.html">
             <span>
               Rent4u
             </span>
@@ -57,7 +57,7 @@
             </div>
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="index.html">Home</a>
+                <a href="inicio.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="car.html">Cars</a>
                 <a href="blog.html">Blog</a>
@@ -97,7 +97,7 @@
                   </h6>
                 </div>
                 <div class="img-box">
-                  <img src="images/b-1.jpg" alt="">
+                  <img src="{% static 'app/images/b-1.jpg'%}" alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
@@ -116,7 +116,7 @@
                   </h6>
                 </div>
                 <div class="img-box">
-                  <img src="images/b-2.jpg" alt="">
+                  <img src="{% static 'app/images/b-2.jpg'%}" alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
@@ -135,7 +135,7 @@
                   </h6>
                 </div>
                 <div class="img-box">
-                  <img src="images/b-3.jpg" alt="">
+                  <img src="{% static 'app/images/b-3.jpg'%}" alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
@@ -154,7 +154,7 @@
                   </h6>
                 </div>
                 <div class="img-box">
-                  <img src="images/b-2.jpg" alt="">
+                  <img src="{% static 'app/images/b-2.jpg'%}" alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
