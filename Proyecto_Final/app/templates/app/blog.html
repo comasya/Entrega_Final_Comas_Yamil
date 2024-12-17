@@ -36,33 +36,35 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
+          <!-- Marca de la empresa -->
           <a class="navbar-brand" href="inicio.html">
-            <span>
-              Rent4u
-            </span>
+            <span>Rent4u</span>
           </a>
-
-          <div class="navbar-collapse" id="">
+    
+          <!-- Opciones del usuario -->
+          <div class="navbar-collapse">
             <div class="user_option">
-              <a href="">
-                Login
-              </a>
+              <a href="./login.html" aria-label="Iniciar sesión">Login</a>
             </div>
+    
+            <!-- Botón de menú -->
             <div class="custom_menu-btn">
-              <button onclick="openNav()">
-                <span class="s-1"> </span>
-                <span class="s-2"> </span>
-                <span class="s-3"> </span>
+              <button onclick="openNav()" aria-expanded="false" aria-label="Abrir menú" aria-controls="myNav">
+                <span class="s-1"></span>
+                <span class="s-2"></span>
+                <span class="s-3"></span>
               </button>
             </div>
-            <div id="myNav" class="overlay">
+    
+            <!-- Menú desplegable -->
+            <div id="myNav" class="overlay" aria-hidden="true">
               <div class="overlay-content">
-                <a href="inicio.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="car.html">Cars</a>
-                <a href="blog.html">Blog</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="#">Login</a>
+                <a href="{% url 'Inicio' %}">Inicio</a>
+                <a href="{% url 'Nosotros' %}">Acerca de</a>
+                <a href="{% url 'Vehiculos' %}">Vehículos</a>
+                <a href="{% url 'Blog' %}">Blog</a>
+                <a href="{% url 'Contacto' %}">Contáctenos</a>
+                <a href="./login.html">Login</a>
               </div>
             </div>
           </div>
@@ -182,12 +184,12 @@
   </footer>
   <!-- footer section -->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+  <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'app/js/bootstrap.js' %}"></script>
+  <script src="{% static 'app/js/custom.js' %}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-  <script src="js/custom.js"></script>
-
+ 
 </body>
 
 </html>
