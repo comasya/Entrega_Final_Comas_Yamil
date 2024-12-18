@@ -9,3 +9,10 @@ urlpatterns = [
     path('blog/', views.blog, name="Blog"),
     path('nosotros/', views.about, name="Nosotros")    
 ]
+
+
+forms_html = [
+    path('formulario/',views.formulario, name ="Formulario")
+]
+
+urlpatterns += forms_html
