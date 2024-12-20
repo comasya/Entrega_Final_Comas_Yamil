@@ -1,0 +1,122 @@
+{%load static%}
+
+{%block main%}
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Proyecto Final Comas Yamil</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.css'%}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'app/css/style.css'%}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'app/css/responsive.css'%}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <!-- Marca de la empresa -->
+          <a class="navbar-brand" href="inicio.html">
+            <span>Rent4u</span>
+          </a>
+    
+          <!-- Opciones del usuario -->
+          <div class="navbar-collapse">
+            <div class="user_option">
+              <a href="./login.html" aria-label="Iniciar sesión">Login</a>
+            </div>
+    
+            <!-- Botón de menú -->
+            <div class="custom_menu-btn">
+              <button onclick="openNav()" aria-expanded="false" aria-label="Abrir menú" aria-controls="myNav">
+                <span class="s-1"></span>
+                <span class="s-2"></span>
+                <span class="s-3"></span>
+              </button>
+            </div>
+    
+            <!-- Menú desplegable -->
+            <div id="myNav" class="overlay" aria-hidden="true">
+              <div class="overlay-content">
+                <a href="{% url 'Inicio' %}">Inicio</a>
+                <a href="{% url 'Nosotros' %}">Acerca de</a>
+                <a href="{% url 'Vehiculos' %}">Vehículos</a>
+                <a href="{% url 'Blog' %}">Blog</a>
+                <a href="{% url 'Contacto' %}">Contáctenos</a>
+                <a href="./login.html">Login</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+  <!-- autoform -->
+
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Ingresar nuevo vehiculo
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="form_container">
+            <form action="" method="POST">
+            {% csrf_token %}
+            {{mi_formulario.as_table}}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="inputName4" placeholder="Marca ">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="inputSubject4" placeholder="Modelo">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="number" class="form-control" id="inputNumber" placeholder="Interno">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="number" class="form-control" id="inputPrecio" placeholder="Precio">
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+              <button type="submit" class="">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="autoform">
+
+  <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'app/js/bootstrap.js' %}"></script>
+  <script src="{% static 'app/js/custom.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+
+</body>
+{% endblock main%}

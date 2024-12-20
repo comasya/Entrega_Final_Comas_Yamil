@@ -8,10 +8,15 @@ urlpatterns = [
     path('vehiculos/', views.car, name="Vehiculos"),
     path('blog/', views.blog, name="Blog"),
     path('nosotros/', views.about, name="Nosotros")
-        
+       
 ]
 forms_api = [
-    path('form-con-api/',views.form_con_api, name="FormConApi")
+    path('autosform/', views.autos_form, name='AutosFormulario'),
+    path('buscarauto/', views.buscar_autos, name="BuscarAuto"),
+    path('clienteform/', views.cliente_form, name='ClienteFormulario'),
+    path('buscarcliente/', views.buscar_cliente, name= 'BuscarCliente'),
+    path('alquilerform/', views.alquiler_form, name="AlquilerFormulario"),
+    path('buscar-alquiler/', views.buscar_alquiler, name= 'BuscarAlquiler')
     
 ]
 

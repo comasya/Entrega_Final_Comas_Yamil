@@ -4,18 +4,18 @@ from django.db import models
 class Autos(models.Model):  
     marca = models.CharField(max_length=25)
     modelo = models.CharField(max_length=25)
-    interno = models.IntegerField()
+    interno = models.IntegerField(unique=True)
     precio = models.FloatField()
     def __str__(self):
-        return f"Nombre: {self.marca} | Interno: {self.interno}" 
+        return f"Marca: {self.marca}, Modelo: {self.modelo}, Interno: {self.interno}, Precio: ${self.precio}" 
     
 class Cliente(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
-    email = models.EmailField(max_length=40)
-    telefono = models.IntegerField()
+    email = models.EmailField(unique=True)
+    telefono = models.CharField(max_length=50)
     def __str__(self):
-        return f"Nombre: {self.nombre}"
+        return f"{self.nombre} {self.apellido} - Email: {self.email}"
     
 class Alquiler(models.Model):
     interno = models.IntegerField() 
@@ -23,4 +23,4 @@ class Alquiler(models.Model):
     fecha = models.DateField()
     total = models.FloatField()
     def __str__(self):
-        return f"Interno: {self.interno} | Cliente: {self.cliente}"
+        return f"Auto: {self.auto.marca} {self.auto.modelo} ({self.auto.interno}), Cliente: {self.cliente.nombre} {self.cliente.apellido}, Fecha: {self.fecha}, Total: ${self.total}"
