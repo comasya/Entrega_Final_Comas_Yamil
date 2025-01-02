@@ -37,7 +37,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="{% url 'Inicio' %}ml">
+          <a class="navbar-brand" href="{% url 'Inicio' %}">
             <span>Rent4u</span>
           </a>
     
@@ -78,12 +78,12 @@
   <section class="contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>Ingresar nuevo vehículo</h2>
+        <h2>Ingresar nuevo cliente</h2>
       </div>
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="form_container">
-            <form action="{% url 'AutosFormulario' %}" method="POST">
+            <form action="{% url 'ClienteFormulario' %}" method="POST">
               {% csrf_token %}
               <div class="form-row">
                 {{ formulario.as_p }}
@@ -97,7 +97,7 @@
       </div>
     </div>
   </section>
-
+  
   
   <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static 'app/js/bootstrap.js' %}"></script>

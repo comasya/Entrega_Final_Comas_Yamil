@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.models import Autos, Cliente, Alquiler
 from app.forms import AutosForm, ClienteForm, AlquilerForm, BuscarAutos, BuscarCliente, BuscarAlquiler
 
@@ -36,7 +36,7 @@ def autos_form(request):
                 precio=informacion["precio"]
             )
             nuevo_auto.save()
-            return render(request, "app/autoform.html")
+            return redirect('/autosform/')
     else:
         formulario = AutosForm()
 
@@ -79,12 +79,11 @@ def cliente_form(request):
                 telefono=informacion["telefono"]
             )
             nuevo_cliente.save()
-            return render(request, "app/inicio.html")
+            return redirect('/clientesform/')
     else:
         formulario = ClienteForm()
 
-    return render(request, 'app/form_con_api.html', {'formulario': formulario})
-
+    return render(request, 'app/clientesform.html', {'formulario': formulario})
 
 # Vista para buscar clientes
 def buscar_cliente(request):
