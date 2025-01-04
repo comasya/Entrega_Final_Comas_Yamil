@@ -1,6 +1,7 @@
 from django import forms
 from .models import Autos, Cliente, Alquiler
 
+
 class AutosForm(forms.Form):
     marca = forms.CharField(max_length=100, label="Marca")
     modelo = forms.CharField(max_length=100, label="Modelo")
@@ -9,8 +10,7 @@ class AutosForm(forms.Form):
 
 class BuscarAutos(forms.Form):
     marca = forms.CharField(required=False, label="Marca", max_length=100)
-    interno = forms.IntegerField(required=False, label="Interno")
-
+    
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(max_length=40, label="Nombre")

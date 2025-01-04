@@ -12,7 +12,7 @@ urlpatterns = [
 ]
 forms_api = [
     path('autosform/', views.autos_form, name='AutosFormulario'),
-    path('buscarauto/', views.buscar_autos, name="BuscarAuto"),
+    path('buscarautos/', views.buscar_autos, name="BuscarAuto"),
     path('clientesform/', views.cliente_form, name='ClienteFormulario'),
     path('buscarcliente/', views.buscar_cliente, name= 'BuscarCliente'),
     path('alquilerform/', views.alquiler_form, name="AlquilerFormulario"),

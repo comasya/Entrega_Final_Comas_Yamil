@@ -44,25 +44,20 @@ def autos_form(request):
 
 
 # Vista para buscar autos
+
 def buscar_autos(request):
-    if request.method == "POST":
-        formulario = BuscarAutos(request.POST)
+    formulario = BuscarAutos(request.GET)  # Capturamos los datos enviados por GET
+    autos_filtrados = Autos.objects.all() 
+    
+    if formulario.is_valid():
+        informacion = formulario.cleaned_data
 
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            autos_filtrados = Autos.objects.all()
+        if informacion.get("marca"):
+            autos_filtrados = autos_filtrados.filter(marca__icontains=informacion["marca"])
+        if informacion.get("interno"):
+            autos_filtrados = autos_filtrados.filter(interno=informacion["interno"])
 
-            if informacion.get("marca"):
-                autos_filtrados = autos_filtrados.filter(marca__icontains=informacion["marca"])
-
-            if informacion.get("interno"):
-                autos_filtrados = autos_filtrados.filter(interno=informacion["interno"])
-
-            return render(request, "app/mostrar_autos.html", {"autos": autos_filtrados})
-    else:
-        formulario = BuscarAutos()
-
-    return render(request, "app/buscar_autos.html", {"formulario": formulario})
+    return render(request, "app/buscar_autos.html", {"formulario": formulario, "autos_filtrados": autos_filtrados})
 
 
 # Vista para cargar datos en la tabla Cliente
