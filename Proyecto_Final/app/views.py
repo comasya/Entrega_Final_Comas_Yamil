@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from app.models import Autos, Cliente, Alquiler
 from app.forms import AutosForm, ClienteForm, AlquilerForm, BuscarAutos, BuscarCliente, BuscarAlquiler
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from django.http import HttpResponse
@@ -46,7 +52,7 @@ def autos_form(request):
 # Vista para buscar autos
 
 def buscar_autos(request):
-    formulario = BuscarAutos(request.GET)  # Capturamos los datos enviados por GET
+    formulario = BuscarAutos(request.POST) 
     autos_filtrados = Autos.objects.all() 
     
     if formulario.is_valid():
@@ -59,6 +65,35 @@ def buscar_autos(request):
 
     return render(request, "app/buscar_autos.html", {"formulario": formulario, "autos_filtrados": autos_filtrados})
 
+
+# Vistas basadas en clases 
+
+class AutosListView(ListView):
+    model = Autos
+    context_object_name = "ListaAutos"
+    template_name = "app/autos_vbc.html"
+    
+class AutosDetailView (DetailView):
+    model = Autos
+    template_name= "app/autos_detalle.html "
+    
+class AutosCreateView ( CreateView):
+    model= Autos
+    template_name= "app/autos_crear.html "
+    success_url= reverse_lazy ('ListaAutos')
+    fields = ['marca', 'modelo', 'interno', 'precio']
+    
+class AutosUpdateView (UpdateView):
+    model= Autos
+    template_name= "app/autos_editar.html"
+    success_url= reverse_lazy ('ListaAutos')
+    fields = ['marca', 'modelo', 'interno', 'precio']
+    
+class AutosDeleteView (DeleteView):
+    model= Autos
+    template_name= "app/autos_borrar.html"
+    success_url= reverse_lazy ('ListaAutos')
+        
 
 # Vista para cargar datos en la tabla Cliente
 def cliente_form(request):
@@ -82,24 +117,18 @@ def cliente_form(request):
 
 # Vista para buscar clientes
 def buscar_cliente(request):
-    if request.method == "POST":
-        formulario = BuscarCliente(request.POST)
+    formulario = BuscarCliente(request.GET)  # Capturamos los datos enviados por GET
+    clientes_filtrados = Cliente.objects.all() 
+    
+    if formulario.is_valid():
+        informacion = formulario.cleaned_data
 
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            clientes_filtrados = Cliente.objects.all()
+        if informacion.get("nombre"):
+            clientes_filtrados = clientes_filtrados.filter(nombre__icontains=informacion["nombre"])
+        if informacion.get("email"):
+            clientes_filtrados = clientes_filtrados.filter(email__icontains=informacion["email"])
 
-            if informacion.get("nombre"):
-                clientes_filtrados = clientes_filtrados.filter(nombre__icontains=informacion["nombre"])
-
-            if informacion.get("email"):
-                clientes_filtrados = clientes_filtrados.filter(email__icontains=informacion["email"])
-
-            return render(request, "app/mostrar_clientes.html", {"clientes": clientes_filtrados})
-    else:
-        formulario = BuscarCliente()
-
-    return render(request, "app/buscar_cliente.html", {"formulario": formulario})
+    return render(request, "app/buscar_cliente.html", {"formulario": formulario, "clientes_filtrados": clientes_filtrados})
 
 
 # Vista para cargar datos en la tabla Alquiler

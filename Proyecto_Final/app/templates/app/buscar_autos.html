@@ -77,35 +77,27 @@
 
   <section class="contact_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h2>Buscar Auto</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-8 mx-auto">
-          <div class="form_container">
-            <form action="{% url 'BuscarAuto' %}" method="GET">
-              {% csrf_token %}
-              <div class="form-row">
-                <table>
-                {{ formulario.as_table }}
-                </table>
-              </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {% if autos_filtrados %}
-            <h3>Resultados encontrados:</h3>
+        <h1>Buscar Autos</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+        <h2>Resultados de la Búsqueda</h2>
+        {% if autos_filtrados %}
             <ul>
                 {% for auto in autos_filtrados %}
-                    <li>Marca: {{ auto.marca }} | Interno: {{ auto.interno }}</li>
+                    <li>
+                        Marca: {{ auto.marca }} | Modelo: {{ auto.modelo }} | Interno: {{ auto.interno }} |
+                        <a href="{% url 'DetalleAutos' auto.pk %}">Ver Detalle</a>
+                        <a href="{% url 'EditarAutos' auto.pk %}">Editar</a>
+                        <a href="{% url 'BorrarAutos' auto.pk %}">Borrar</a>
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No se encontraron autos. Verifique los datos ingresados.</p>
+            <p>No se encontraron autos que coincidan con los criterios de búsqueda.</p>
         {% endif %}
     </div>
 </section>
