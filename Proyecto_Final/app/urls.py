@@ -7,8 +7,9 @@ urlpatterns = [
     path('contacto/', views.contact, name="Contacto"),
     path('vehiculos/', views.car, name="Vehiculos"),
     path('blog/', views.blog, name="Blog"),
-    path('nosotros/', views.about, name="Nosotros")
-       
+    path('nosotros/', views.about, name="Nosotros"),
+    path('users/', views.login, name="Login"),
+           
 ]
 
 forms_api = [

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {%load static%}
 
 {%block main%}
@@ -14,7 +15,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Proyecto Final Comas Yamil</title>
+  <title>Login</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -37,16 +38,15 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="{% url 'Inicio' %}ml">
-            <span>Rent4u</span>
+          <a class="navbar-brand" href="{% url 'Inicio' %}">
+            <span class="text-white">Rent4u</span>
           </a>
     
-          <!-- Opciones del usuario -->
           <div class="navbar-collapse">
             <div class="user_option">
-              <a href="{% url 'Login' %}" aria-label="Iniciar sesión">Login</a>
+              <a href="{% url 'Register' %}" aria-label="Registrarse">Registrarse</a>
             </div>
-    
+
             <!-- Botón de menú -->
             <div class="custom_menu-btn">
               <button onclick="openNav()" aria-expanded="false" aria-label="Abrir menú" aria-controls="myNav">
@@ -64,8 +64,7 @@
                 <a href="{% url 'Vehiculos' %}">Vehículos</a>
                 <a href="{% url 'Blog' %}">Blog</a>
                 <a href="{% url 'Contacto' %}">Contáctenos</a>
-                <a href="{% url 'Login' %}">Login</a>
-              </div>
+                </div>
             </div>
           </div>
         </nav>
@@ -73,30 +72,35 @@
     </header>
     <!-- end header section -->
 
-  <!-- autoform -->
-
-  <section class="contact_section layout_padding">
+  <!-- Login -->
+<section class="contact_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h2>Ingresar nuevo vehículo</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-8 mx-auto">
-          <div class="form_container">
-            <form action="{% url 'AutosFormulario' %}" method="POST">
+        <div class="heading_container">
+            <h1>Iniciar Sesión</h1>
+            {# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
+      <div class="d-flex justify-content-center">
+
+        {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
+        <div class="d-flex flex-column">
+
+            {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
+            <p class="fs-5 fw-bold">{{ msg_login }}</p>
+
+            <form action="" method="POST">
               {% csrf_token %}
-              <div class="form-row">
-                {{ formulario.as_p }}
-              </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">Enviar</button>
-              </div>
+              
+              {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                  {{ form.non_field_errors }}
+                </div>
+              {% endif %}
+              
+              {{ form.as_table }}
+              <input type="submit" value="Iniciar sesión" class="btn btn-primary">
             </form>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
   
   <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
