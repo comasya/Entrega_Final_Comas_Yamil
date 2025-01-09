@@ -14,7 +14,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Registro</title>
+  <title>Editar Contraseña</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -44,7 +44,7 @@
     <!-- Opciones del usuario -->
     <div class="navbar-collapse">
         <div class="user_option">
-          <a href="{% url 'Login' %}" aria-label="Iniciar sesión">Login</a>
+          <a href="{% url 'Inicio' %}" aria-label="Inicio">Inicio</a>
         </div>
 
             <!-- Botón de menú -->
@@ -73,29 +73,25 @@
     </header>
     <!-- end header section -->
 
-  <!-- Registro -->
+  <!-- Editar Usuario -->
 
 
 <section class="contact_section layout_padding">
-{# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
-  <div class="d-flex justify-content-center">
+    <div class="container">
+        <div class="heading_container">
+          <h1>Cambiar Contraseña</h1>
 
-  {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
-    <div class="d-flex flex-column">
+            <form action="" method="POST">
+              {% csrf_token %}
 
-      {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
-        <p class="fs-5 fw-bold">{{ msg_register }}</p>
+              <table>
+                {{ mi_form.as_table }}
+              </table>
+              <input type="submit" value="Actualizar">
 
-        <form action="" method="POST">
-            {% csrf_token %}
-          
-            {{ form.as_p }}
-            <input type="submit" value="Registrarse">
-
-        </form>
-
-    </div>
-  </div>
+              </form>
+          </div>
+      </div>
 </section>
 
   
