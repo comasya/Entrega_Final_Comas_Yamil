@@ -77,25 +77,25 @@
 
 
 <section class="contact_section layout_padding">
-    {# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
-    <div class="d-flex justify-content-center">
-        
-        {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
-        <div class="d-flex flex-column">
-            <h1>Registrarse</h1>   
-            {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
-            <p class="fs-5 fw-bold">{{ msg_register }}</p>
+{# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
+  <div class="d-flex justify-content-center">
 
-            <form action="" method="POST">
-                {% csrf_token %}
-                
-                {{ form.as_p}}
-                <input type="submit" value="Registrarse"class="btn btn-primary">
+  {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
+    <div class="d-flex flex-column">
 
-            </form>
+      {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
+        <p class="fs-5 fw-bold">{{ msg_register }}</p>
 
-        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+          
+            {{ form.as_p }}
+            <input type="submit" value="Registrarse">
+
+        </form>
+
     </div>
+  </div>
 </section>
 
   

@@ -78,27 +78,25 @@
         <div class="heading_container">
             <h1>Iniciar Sesión</h1>
             {# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
-      <div class="d-flex justify-content-center">
+      {# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
+    <div class="d-flex justify-content-center">
 
-        {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
-        <div class="d-flex flex-column">
+      {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
+      <div class="d-flex flex-column">
 
-            {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
-            <p class="fs-5 fw-bold">{{ msg_login }}</p>
+          {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
+          <p class="fs-5 fw-bold">{{ msg_login }}</p>
 
-            <form action="" method="POST">
+          <form action="" method="POST">
               {% csrf_token %}
               
-              {% if form.non_field_errors %}
-                <div class="alert alert-danger">
-                  {{ form.non_field_errors }}
-                </div>
-              {% endif %}
-              
-              {{ form.as_table }}
-              <input type="submit" value="Iniciar sesión" class="btn btn-primary">
-            </form>
-        </div>
+              {{ form.as_p }}
+              <input type="submit" value="Iniciar sesión">
+
+          </form>
+
+      </div>
+  </div>
     </div>
 </section>
 

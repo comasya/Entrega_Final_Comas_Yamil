@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -13,3 +14,6 @@ class UserRegisterForm(UserCreationForm):
         # Si queremos EDIAR los mensajes de ayuda editamos este dict,
             # de lo contrario lo limpiamos de ésta forma.
         help_text = {k: "" for k in fields}
+        
+        
+

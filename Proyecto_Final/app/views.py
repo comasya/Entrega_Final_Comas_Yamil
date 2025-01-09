@@ -14,15 +14,19 @@ from django.http import HttpResponse
 def inicio(request):
     return render(request,"app/inicio.html")
 
+@login_required
 def about(request):
     return render(request,"app/about.html")
 
+@login_required
 def blog(request):
     return render(request,"app/blog.html")
 
+@login_required
 def car(request):
     return render(request,"app/car.html")
 
+@login_required
 def contact(request):
     return render(request,"app/contact.html")
 
@@ -32,6 +36,7 @@ def login(request):
 
 
 # Vista para cargar datos en la tabla Autos
+@login_required
 def autos_form(request):
     if request.method == 'POST':
         formulario = AutosForm(request.POST)
@@ -53,7 +58,7 @@ def autos_form(request):
 
 
 # Vista para buscar autos
-
+@login_required
 def buscar_autos(request):
     formulario = BuscarAutos(request.POST) 
     autos_filtrados = Autos.objects.all() 
@@ -71,34 +76,35 @@ def buscar_autos(request):
 
 # Vistas basadas en clases 
 
-class AutosListView(ListView):
+class AutosListView(LoginRequiredMixin, ListView):
     model = Autos
     context_object_name = "ListaAutos"
     template_name = "app/autos_vbc.html"
     
-class AutosDetailView (DetailView):
+class AutosDetailView (LoginRequiredMixin, DetailView):
     model = Autos
     template_name= "app/autos_detalle.html "
     
-class AutosCreateView ( CreateView):
+class AutosCreateView (LoginRequiredMixin, CreateView):
     model= Autos
     template_name= "app/autos_crear.html "
     success_url= reverse_lazy ('ListaAutos')
     fields = ['marca', 'modelo', 'interno', 'precio']
     
-class AutosUpdateView (UpdateView):
+class AutosUpdateView (LoginRequiredMixin, UpdateView):
     model= Autos
     template_name= "app/autos_editar.html"
     success_url= reverse_lazy ('ListaAutos')
     fields = ['marca', 'modelo', 'interno', 'precio']
     
-class AutosDeleteView (DeleteView):
+class AutosDeleteView (LoginRequiredMixin, DeleteView):
     model= Autos
     template_name= "app/autos_borrar.html"
     success_url= reverse_lazy ('ListaAutos')
         
 
 # Vista para cargar datos en la tabla Cliente
+@login_required
 def cliente_form(request):
     if request.method == 'POST':
         formulario = ClienteForm(request.POST)
@@ -119,6 +125,7 @@ def cliente_form(request):
     return render(request, 'app/clientesform.html', {'formulario': formulario})
 
 # Vista para buscar clientes
+@login_required
 def buscar_cliente(request):
     formulario = BuscarCliente(request.GET)  # Capturamos los datos enviados por GET
     clientes_filtrados = Cliente.objects.all() 
@@ -135,6 +142,7 @@ def buscar_cliente(request):
 
 
 # Vista para cargar datos en la tabla Alquiler
+@login_required
 def alquiler_form(request):
     if request.method == 'POST':
         formulario = AlquilerForm(request.POST)
@@ -156,6 +164,7 @@ def alquiler_form(request):
 
 
 # Vista para buscar alquileres
+@login_required
 def buscar_alquiler(request):
     if request.method == "POST":
         formulario = BuscarAlquiler(request.POST)

@@ -1,99 +1,16 @@
-<!DOCTYPE html>
+{% extends "app/base.html" %}
+
 {%load static%}
 
+{% block title %} Logout {% endblock title %}
+
+
 {%block main%}
-<html>
-
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
-  <title>Proyecto Final Comas Yamil</title>
-
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.css'%}" />
-
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'app/css/style.css'%}" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="{% static 'app/css/responsive.css'%}" rel="stylesheet" />
-</head>
-
-<body>
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="{% url 'Inicio' %}">
-            <span class="text-white">Rent4u</span>
-          </a>
-    
-    
-            <!-- Botón de menú -->
-            <div class="custom_menu-btn">
-              <button onclick="openNav()" aria-expanded="false" aria-label="Abrir menú" aria-controls="myNav">
-                <span class="s-1"></span>
-                <span class="s-2"></span>
-                <span class="s-3"></span>
-              </button>
-            </div>
-    
-            <!-- Menú desplegable -->
-            <div id="myNav" class="overlay" aria-hidden="true">
-              <div class="overlay-content">
-                <a href="{% url 'Inicio' %}">Inicio</a>
-                <a href="{% url 'Nosotros' %}">Acerca de</a>
-                <a href="{% url 'Vehiculos' %}">Vehículos</a>
-                <a href="{% url 'Blog' %}">Blog</a>
-                <a href="{% url 'Contacto' %}">Contáctenos</a>
-                </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <!-- end header section -->
-
   <!-- Login -->
 <section class="contact_section layout_padding">
     <div class="container">
         <div class="heading_container">
-            <h1>Iniciar Sesión</h1>
-            {# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
-      <div class="d-flex justify-content-center">
-
-        {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
-        <div class="d-flex flex-column">
-
-            {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
-            <p class="fs-5 fw-bold">{{ msg_login }}</p>
-
-            <form action="" method="POST">
-              {% csrf_token %}
-              
-              {% if form.non_field_errors %}
-                <div class="alert alert-danger">
-                  {{ form.non_field_errors }}
-                </div>
-              {% endif %}
-              
-              {{ form.as_table }}
-              <input type="submit" value="Iniciar sesión" class="btn btn-primary">
-            </form>
+            <p class="fs-5 fw-bold">Te has deslogueado</p>
         </div>
     </div>
 </section>
