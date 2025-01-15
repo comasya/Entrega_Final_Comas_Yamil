@@ -1,5 +1,6 @@
 Pipfile
 Pipfile.lock
+media/**
 
 __pycache__/
 *.pyc

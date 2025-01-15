@@ -88,9 +88,14 @@
         <p>Modelo: {{ object.modelo }}</p>
         <p>Interno: {{ object.interno }}</p>
         <p>Precio: {{ object.precio }}</p>
+        {% if request.user.is_superuser %}
         <a href="{% url 'EditarAutos' object.pk %}" class="btn btn-warning">Editar</a>
         <a href="{% url 'BorrarAutos' object.pk %}" class="btn btn-danger">Borrar</a>
         <a href="{% url 'ListaAutos' %}" class="btn btn-secondary">Volver a la lista</a>
+        {% else %}
+        <a href="{% url 'AlquilerFormulario' %}" class="btn btn-primary">Alquilar Auto</a>
+        <a href="{% url 'ListaAutos' %}" class="btn btn-secondary">Volver a la lista</a> 
+        {% endif %}
     </div>
 </section>
 

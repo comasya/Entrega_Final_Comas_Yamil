@@ -81,17 +81,23 @@
 
   <!-- Crear Auto -->
 
+  {% if request.user.is_superuser %}
   <section class="contact_section layout_padding">
-    <div class="container">
-        <h1>Crear Nuevo Auto</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Guardar Auto</button>
-            <a href="{% url 'ListaAutos' %}" class="btn btn-secondary">Cancelar</a>
-        </form>
-    </div>
-</section>
+      <div class="container">
+          <h1>Crear Nuevo Auto</h1>
+          <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-success">Guardar Auto</button>
+              <a href="{% url 'ListaAutos' %}" class="btn btn-secondary">Cancelar</a>
+          </form>
+      </div>
+  </section>
+{% else %}
+  <div class="alert alert-danger" role="alert">
+      No tienes permiso para acceder a esta página.
+  </div>
+{% endif %}
 
   
   

@@ -69,8 +69,7 @@
                 <a href="{% url 'Vehiculos' %}">Vehículos</a>
                 <a href="{% url 'Blog' %}">Blog</a>
                 <a href="{% url 'Contacto' %}">Contáctenos</a>
-                <a href="{% url 'ListaAutos' %}">Lista de Autos</a>
-                <a href="{% url 'Login' %}">Login</a>
+                <a href="{% url 'Logout' %}">Logout</a>
               </div>
             </div>
           </div>
@@ -185,7 +184,7 @@
   <footer class="container-fluid footer_section">
     <p>
       Copyright &copy; 2020 All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
+      <a href="{% url 'Inicio' %}">Inicio</a>
     </p>
   </footer>
   <!-- footer section -->

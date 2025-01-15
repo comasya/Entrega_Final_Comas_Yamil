@@ -46,9 +46,13 @@
             <div class="user_option">
               {% if request.user.is_authenticated %}
                 <a href="#" aria-label=>{{request.user.username}} |</a>
-                <img src="{{ request.user.avatar.imagen.url}}" alt="" height="40px"> 
+                {% if request.user.avatar.imagen %}
+                  <img src="{{ request.user.avatar.imagen.url }}" alt="Avatar" height="40px">
+                {% else %}
+                  <img src="{% static 'default_avatar.png' %}" alt="Avatar por defecto" height="40px">
+                {% endif %}
                 <a href="{% url 'Logout' %}" aria-label="Logout"> Logout |</a>     
-                <a href="{% url 'EditarUsuario' %}" aria-label="EditarUsuario"> Editar Usuario |</a>  
+                <a href="{% url 'EditarUsuario' %}" aria-label="EditarUsuario"> Editar perfil |</a>  
                 <a href="{% url 'EditarPass' %}" aria-label="EditarPass"> Editar Pass</a>
               {%else%}
                 <a href="{% url 'Login' %}" aria-label="Iniciar sesión"> Login</a>
@@ -74,7 +78,11 @@
                 <a href="{% url 'Blog' %}">Blog</a>
                 <a href="{% url 'Contacto' %}">Contáctenos</a>
                 <a href="{% url 'ListaAutos' %}">Lista de Autos</a>
-                <a href="{% url 'Login' %}">Login</a>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'Logout' %}" aria-label="Logout">Logout</a>
+              {%else%}
+                <a href="{% url 'Login' %}" aria-label="Iniciar sesión">Login</a>
+              {%endif%}
               </div>
             </div>
           </div>
@@ -98,9 +106,7 @@
                     Expertos <br>
                     en <br>
                   </h1>
-                  {%if request.user.is_superuser%}
                   <a href="{% url 'ListaAutos' %}">Lista de Autos</a>
-                  {%endif%}
                   </a>
                 </div>
               </div>
@@ -111,7 +117,7 @@
                     autos<br>
                   </h1>
                   <a href="{% url 'ListaAutos' %}">Lista de Autos</a>
-                  </a>
+                </a>
                 </div>
               </div>
               </div>
@@ -134,7 +140,7 @@
   <footer class="container-fluid footer_section">
     <p>
       Copyright &copy; 2020 All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
+      <a href="{% url 'Inicio' %}">Inicio</a>
     </p>
   </footer>
   <!-- footer section -->

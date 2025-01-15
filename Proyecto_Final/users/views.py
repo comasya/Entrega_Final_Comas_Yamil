@@ -25,7 +25,7 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, "app/inicio.html")
+                return redirect('Inicio')
 
         msg_login = "Usuario o contraseña incorrectos"
 
@@ -42,10 +42,8 @@ def register(request):
         
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            # Si los datos ingresados en el form son válidos, con form.save()
-            # creamos un nuevo user usando esos datos
             form.save()
-            return render(request,"app/inicio.html")
+            return redirect('Inicio')
         print(form.errors)
         msg_register = "Error en los datos ingresados"
 
@@ -57,42 +55,42 @@ def register(request):
 # Obligamos a loguearse para editar los datos del usuario activo
 @login_required
 def editar_perfil(request):
+    user = request.user
 
-    # El usuario para poder editar su perfil primero debe estar logueado.
-    # Al estar logueado, podremos encontrar dentro del request la instancia
-    # del usuario -> request.user
-    usuario = request.user
+    # Intenta obtener el avatar del usuario; si no existe, asigna None
     try:
-        avatar = usuario.avatar
+        avatar = user.avatar
     except Avatar.DoesNotExist:
-        avatar= None
-        
+        avatar = None
+
     if request.method == 'POST':
+        # Asegúrate de incluir archivos en el formulario con `request.FILES`
+        form = UserEditForm(request.POST, request.FILES, instance=user)
 
-        miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
+        if form.is_valid():
+            form.save()
 
-        if miFormulario.is_valid():
+            # Obtén la imagen solo si está presente en el formulario
+            nueva_imagen = form.cleaned_data.get("imagen")
 
-            miFormulario.save()
+            if nueva_imagen:
+                if avatar:
+                    avatar.imagen = nueva_imagen
+                    avatar.save()
+                else:
+                    Avatar.objects.create(user=user, imagen=nueva_imagen)
 
-            if avatar:
-                avatar.imagen = miFormulario.cleaned_data.get("imagen")
-                avatar.save()
-                             
-            else:
-                Avatar.objects.create(user=usuario, imagen=miFormulario.cleaned_data.get("imagen"))
-            
-            # Retornamos al inicio una vez guardado los datos
-            return render(request, "app/inicio.html")
-            
+            # Redirige al usuario después de guardar los cambios
+            return redirect('Inicio')
     else:
-        miFormulario = UserEditForm(instance=request.user)
+        # Crea el formulario con los datos del usuario actual
+        form = UserEditForm(instance=user)
 
-    return render(request, "users/editar_usuario.html", {"mi_form": miFormulario,})
+    return render(request, "users/editar_usuario.html", {"mi_form": form})
 
     
     
 class CambiarPassView(LoginRequiredMixin, PasswordChangeView):
 
     template_name = "users/editar_passwd.html"
-    success_url = reverse_lazy('EditarPerfil')
+    success_url = reverse_lazy('EditarUsuario')

@@ -76,23 +76,32 @@
   <!-- Editar Usuario -->
 
 
-<section class="contact_section layout_padding">
+  <section class="contact_section layout_padding">
     <div class="container">
         <div class="heading_container">
-          <h1>Cambiar Contraseña</h1>
+            <h1>Cambiar Contraseña</h1>
 
-            <form action="" method="POST">
-              {% csrf_token %}
+            <!-- Centrado del formulario -->
+            <div class="d-flex justify-content-center">
 
-              <table>
-                {{ mi_form.as_table }}
-              </table>
-              <input type="submit" value="Actualizar">
+                <!-- Colocación del título y formulario en formato vertical -->
+                <div class="d-flex flex-column">
 
-              </form>
-          </div>
-      </div>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <!-- Uso del método as_p para simplificar el renderizado -->
+                        {{ form.as_p }}
+
+                        <input type="submit" value="Actualizar Contraseña" class="btn btn-success w-100 mt-3">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 
   
   <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>

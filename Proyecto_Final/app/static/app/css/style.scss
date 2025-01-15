@@ -111,6 +111,31 @@ body {
   }
 }
 
+.username {
+  @include secondary-font;
+  font-size: 16px;
+  color: $black;
+  font-weight: bold;
+  text-transform: capitalize; // Esto hace que la primera letra de cada palabra esté en mayúscula
+  margin: 10px 0;
+
+  &:hover {
+    color: darken($black, 10%);
+    text-decoration: underline; // Añade un efecto visual al pasar el cursor
+  }
+}
+
+.header_section .username {
+  font-size: 18px;
+  color: $white;
+}
+
+.client_section .username {
+  font-size: 16px;
+  color: $primary1;
+}
+
+
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link img {
   width: 22px;
   margin-right: 15px;

@@ -101,6 +101,17 @@ class AutosDeleteView (LoginRequiredMixin, DeleteView):
     model= Autos
     template_name= "app/autos_borrar.html"
     success_url= reverse_lazy ('ListaAutos')
+    
+class AlquilerCreateView(CreateView):  
+    model = Alquiler
+    template_name = 'app/alquilerform.html'
+    fields = ['auto', 'cliente', 'total']
+    success_url = reverse_lazy('AlquilerFormulario')  # Redirige a la misma página tras alquilar
+
+    def form_valid(self, form):
+        # Aquí puedes agregar lógica adicional si es necesario
+        form.instance.fecha = form.cleaned_data.get('fecha', None)
+        return super().form_valid(form)
         
 
 # Vista para cargar datos en la tabla Cliente
@@ -160,7 +171,7 @@ def alquiler_form(request):
     else:
         formulario = AlquilerForm()
 
-    return render(request, 'app/form_con_api.html', {'formulario': formulario})
+    return render(request, 'app/alquilerform.html', {'formulario': formulario})
 
 
 # Vista para buscar alquileres
