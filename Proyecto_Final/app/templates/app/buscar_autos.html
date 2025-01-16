@@ -94,10 +94,14 @@
             <ul>
                 {% for auto in autos_filtrados %}
                     <li>
-                        Marca: {{ auto.marca }} | Modelo: {{ auto.modelo }} | Interno: {{ auto.interno }} |
-                        <a href="{% url 'DetalleAutos' auto.pk %}">Ver Detalle</a>
-                        <a href="{% url 'EditarAutos' auto.pk %}">Editar</a>
-                        <a href="{% url 'BorrarAutos' auto.pk %}">Borrar</a>
+                      Marca: {{ auto.marca }} | Modelo: {{ auto.modelo }} | Interno: {{ auto.interno }} |
+                      {% if request.user.is_superuser %}
+                      <a href="{% url 'DetalleAutos' auto.pk %}">Ver Detalle</a> |
+                      <a href="{% url 'EditarAutos' auto.pk %}">Editar</a> |
+                      <a href="{% url 'BorrarAutos' auto.pk %}">Borrar</a>
+                      {% else %}
+                      <a href="{% url 'DetalleAutos' auto.pk %}">Ver Detalle</a> |
+                      {% endif %}
                     </li>
                 {% endfor %}
             </ul>

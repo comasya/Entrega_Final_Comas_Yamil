@@ -78,8 +78,8 @@
     </header>
     <!-- end header section -->
 
-  <!-- Buscar Auto -->
-
+  <!-- Buscar cliente -->
+  {% if request.user.is_superuser %}
   <section class="contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
@@ -114,7 +114,11 @@
         {% endif %}
     </div>
 </section>
-
+{% else %}
+  <div class="alert alert-danger" role="alert">
+      No tienes permiso para acceder a esta página.
+  </div>
+{% endif %}
   
   
   <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
