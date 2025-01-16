@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate 
 from users.forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from users.forms import UserEditForm
-from users.models import Avatar
+from .models import Avatar
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import PasswordChangeView
@@ -57,11 +56,10 @@ def register(request):
 def editar_perfil(request):
     user = request.user
 
-    # Intenta obtener el avatar del usuario; si no existe, asigna None
     try:
         avatar = user.avatar
     except Avatar.DoesNotExist:
-        avatar = None
+        avatar= None
 
     if request.method == 'POST':
         # Asegúrate de incluir archivos en el formulario con `request.FILES`
@@ -70,9 +68,7 @@ def editar_perfil(request):
         if form.is_valid():
             form.save()
 
-            # Obtén la imagen solo si está presente en el formulario
             nueva_imagen = form.cleaned_data.get("imagen")
-
             if nueva_imagen:
                 if avatar:
                     avatar.imagen = nueva_imagen
@@ -80,10 +76,8 @@ def editar_perfil(request):
                 else:
                     Avatar.objects.create(user=user, imagen=nueva_imagen)
 
-            # Redirige al usuario después de guardar los cambios
             return redirect('Inicio')
     else:
-        # Crea el formulario con los datos del usuario actual
         form = UserEditForm(instance=user)
 
     return render(request, "users/editar_usuario.html", {"mi_form": form})

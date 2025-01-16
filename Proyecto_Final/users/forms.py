@@ -23,7 +23,7 @@ class UserEditForm(UserChangeForm):
     email = forms.EmailField(label="Ingrese su email:")
     last_name = forms.CharField(label='Apellido')
     first_name = forms.CharField(label='Nombre')
-    imagen = forms.ImageField(label="Avatar", required=False)
+    imagen = forms.ImageField(label="Avatar", required= False)
    
 
     class Meta:

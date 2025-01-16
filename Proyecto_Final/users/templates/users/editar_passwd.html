@@ -81,16 +81,16 @@
         <div class="heading_container">
             <h1>Cambiar Contraseña</h1>
 
-            <!-- Centrado del formulario -->
+           
             <div class="d-flex justify-content-center">
 
-                <!-- Colocación del título y formulario en formato vertical -->
+                
                 <div class="d-flex flex-column">
 
                     <form action="" method="POST">
                         {% csrf_token %}
 
-                        <!-- Uso del método as_p para simplificar el renderizado -->
+                        
                         {{ form.as_p }}
 
                         <input type="submit" value="Actualizar Contraseña" class="btn btn-success w-100 mt-3">
